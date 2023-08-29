@@ -6,16 +6,20 @@ export default {
         return{
             baseUrl: 'http://localhost:8000',
             projects: [],
+            currentPage: 1,
+            lastPage: null,
         }
     },
     created(){
-        this.getProjects();
+        this.getProjects(1);
     },
     methods:{
-        getProjects() {
-            axios.get(`${this.baseUrl}/api/projects`).then((response) => {
+        getProjects(numPage) {
+            axios.get(`${this.baseUrl}/api/projects`, {params: {page: numPage}}).then((response) => {
                 if(response.data.success) {
-                    this.projects = response.data.results;
+                    this.projects = response.data.results.data;
+                    this.currentPage = response.data.results.current_page;
+                    this.lastPage = response.data.results.last_page;
                 } else {
 
                 }
@@ -57,6 +61,22 @@ export default {
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-center">
+                <nav>
+                    <ul class="pagination mt-3">
+                        <li :class="currentPage === 1 ? 'disabled' : ''">
+                            <button class="page-link" @click="getProjects(currentPage - 1)">Precedente</button>
+                        </li>
+                        <li :class="currentPage === lastPage ? 'disabled' : ''">
+                            <button class="page-link" @click="getProjects(currentPage + 1)">Successivo</button>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
