@@ -43,7 +43,18 @@ export default {
                     </div>
                     <div class="card-header">{{ project.name }}</div>
                     <div class="card-body">
-                        Argomento: <span>{{ project.topic }}</span>
+                        <p>Argomento: <span>{{ project.topic }}</span></p>
+                        <!-- tipologia progetto -->
+                        <p v-if="project.type">Tipologia: <span>{{ project.type.name }}</span></p>
+                        <!-- tecnologie utilizzate -->
+                        <div v-if="(project.technologies.length > 0)">
+                            <span><strong>Tecnologie utilizzate:</strong></span>
+                            <ul>
+                                <li v-for="technology in project.technologies" :key="technology.id">
+                                    {{ technology.name }}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
