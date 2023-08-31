@@ -16,10 +16,7 @@ export default {
     methods: {
         getSinglesProject() {
             axios.get(`${this.store.baseUrl}/api/projects/${this.$route.params.slug}`).then((response) => {
-                console.log(response.data.success);
-
                 if(response.data.success) {
-                    console.log(response.data.success);
                     this.project = response.data.project;
                 } else {
                     this.$router.push({name: 'not-found'});
@@ -31,8 +28,32 @@ export default {
 </script>
 
 <template lang="">
-    <div>
-        prova
+    <div class="container">
+        <div class="row">
+            <div class="mt-5 col-12">
+                <div class="card">
+                    <div class="card-image-top">
+                        <img class="img-height img-fluid" :src="`${this.store.baseUrl}/storage/${project.img}`">
+                    </div>
+                    <div class="card-header">{{ project.name }}</div>
+                    <div class="card-body">
+                        <p>Argomento: <span>{{ project.topic }}</span></p>
+                        <p>Link repository: <span>{{ project.link_repository }}</span></p>
+                        <!-- tipologia progetto -->
+                        <p v-if="project.type">Tipologia: <span>{{ project.type.name }}</span></p>
+                        <!-- tecnologie utilizzate -->
+                        <div v-if="(project.technologies.length > 0)">
+                            <span><strong>Tecnologie utilizzate:</strong></span>
+                            <ul>
+                                <li v-for="technology in project.technologies" :key="technology.id">
+                                    {{ technology.name }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
