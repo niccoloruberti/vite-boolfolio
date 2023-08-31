@@ -32,6 +32,9 @@ export default {
                     </li>
                 </ul>
             </div>
+            <div>
+                <router-link :to="{name: 'single-project', params: { slug: project.slug}}" class="btn btn-primary">Vai al progetto</router-link>
+            </div>
         </div>
     </div>
 </template>
