@@ -13,6 +13,10 @@ export default {
                     label: 'projects',
                     routeName: 'projects'
                 },
+                {
+                    label: 'contact us',
+                    routeName: 'contact-us'
+                }
             ]
         }
     }
