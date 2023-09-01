@@ -1,16 +1,25 @@
 <script>
-import { router } from '../router';
+import { router } from '../router.js';
+import ContactForm from '../components/ContactForm.vue';
 export default {
-    name: 'ContactUs'
-}
+    name: 'ContactUs',
+    components: {
+        ContactForm
+    }
+};
 </script>
 
 <template lang="">
-    <div>
-        
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center my-5">Contatti</h1>
+            </div>
+        </div>
     </div>
+    <ContactForm />
 </template>
-<div>ciao</div>
+
 <style lang="">
     
 </style>
