@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage.vue';
 import ProjectList from './pages/ProjectList.vue';
 import SingleProject from './pages/SingleProject.vue';
 import ContactUs from './pages/ContactUs.vue';
+import ThankYou from './pages/ThankYou.vue'
 import NotFound from './pages/NotFound.vue';
 
 const router = createRouter({
@@ -28,6 +29,11 @@ const router = createRouter({
             path: '/contact-us',
             name: 'contact-us',
             component: ContactUs
+        },
+        {
+            path: '/thank-you',
+            name: 'thank-you',
+            component: ThankYou
         },
         {
             path: '/:patchMatch(.*)*',
